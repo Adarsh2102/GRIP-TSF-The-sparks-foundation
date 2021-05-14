@@ -1,0 +1,27 @@
+###########    GRIP@TSF my first task           #############
+######## PREDICTION USING SUPERVISED MACHINE LEARING ################
+##### to predict the score of astudent who studies for 9.25 hrs.per day. ######## 
+
+#####################   Step1:- to read  given data .   #########################
+sdata=read.csv(file.choose(),header=T)
+
+##########  Step2:-  extracting the data ################
+x=sdata$Hours
+y=sdata$Scores
+
+##########  Step3:- Fitting the linear regression model to the extracted data ###############
+fit=lm(y~x)
+
+###########  Step4:- Extracting coefficientsand summary from linear model. ##############
+c=coefficients(lm(y~x))
+summary(fit)
+
+######  Step5:- Fitted line plot and prediction function ########
+predictscore=function(t){
+predscr=c[1]+(c[2]*t)
+print('the predicted score is: ')
+return(as.numeric(predscr)) }
+
+##############  Step6:-  Visualizing the fitted line plot ##########
+plot(x,y,main="Regression line plot",xlab="Hours",ylab="Scores","p",col="blue")
+abline(lm(y~x),col='red')
